@@ -33,7 +33,6 @@ HSF family TFs	ChIP-seq	https://pubmed.ncbi.nlm.nih.gov/37254211/	https://www.nc
 EDF1-3, EIN3	ChIP-seq	https://pubmed.ncbi.nlm.nih.gov/36945593/	https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE182617	TAIR10	with RNA-seq data				Ine	
 NAC094	DAP-seq	https://pubmed.ncbi.nlm.nih.gov/36945893/	https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE197359	L. japonicus genome v.3.0					Ine	
 ZmAuxIAA8	DAP-seq	https://pubmed.ncbi.nlm.nih.gov/37725963/	https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE240962	maize					Ine	
-STM	ChIP-seq	https://pubmed.ncbi.nlm.nih.gov/39747964/	https://www.ncbi.nlm.nih.gov/bioproject/1167216	TAIR10	raw data only				Ine	
 WUS	ChIP-seq	https://pubmed.ncbi.nlm.nih.gov/38049411/	https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE244737	TAIR10					Vipin	
 33 TFs	DAP-seq	https://pubmed.ncbi.nlm.nih.gov/38922302/	https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE224196	AGPv4		Yes	Not needed	14 TFs of which DAP-seq was available. Can still check ChIP-seq	Vipin	
 bZIP59	ChIP-seq	https://pubmed.ncbi.nlm.nih.gov/39536759/	https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE236101	TAIR10					Vipin	
@@ -42,7 +41,7 @@ bZIP59	ChIP-seq	https://pubmed.ncbi.nlm.nih.gov/39536759/	https://www.ncbi.nlm.n
 115 TFs	DAP-seq	https://pubmed.ncbi.nlm.nih.gov/38167709/	https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE201700	Zea mays ssp mays B73 v4		No	To be done	Already in JASPAR different data, can be used for metadata update 	Vipin	
 ARID1	ChIP-seq	https://pubmed.ncbi.nlm.nih.gov/39152128/	https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE268716	TAIR10					Vipin	
 YB2 (NFYB2)	ChIP-seq	https://pubmed.ncbi.nlm.nih.gov/38953749/	https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE247055	TAIR10					Vipin	
-TGA1	ChIP-seq	https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE240738	https://pubmed.ncbi.nlm.nih.gov/39179528/	TAIR10					Vipin	
+TGA1	ChIP-seq	https://pubmed.ncbi.nlm.nih.gov/39179528/	https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE240738	TAIR10					Vipin	
 ZmNAC128, ZMNAC130	ChIP-seq	https://pubmed.ncbi.nlm.nih.gov/38962989/	https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE262335	Zea mays ssp mays B73 v4					Vipin	
 CPP2, C2H23, THX20, OBF4	DAP-seq	https://pubmed.ncbi.nlm.nih.gov/38962989/	https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE262337	Zea mays ssp mays B73 v4					Vipin	
 PTL3	DAP-seq	https://pmc.ncbi.nlm.nih.gov/articles/PMC11234262/	https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE228358	TAIR10					Vipin	
@@ -63,7 +62,7 @@ ZmCCT	DAP-seq	https://pubmed.ncbi.nlm.nih.gov/37725963/	https://www.ncbi.nlm.nih
 NRPE	ChIP-seq	https://pmc.ncbi.nlm.nih.gov/articles/PMC11127964/#Sec10	https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE233781	TAIR10	mixed with various NGS				Roza	
 SPT6L	ChIP-seq	https://pmc.ncbi.nlm.nih.gov/articles/PMC11127964/#Sec10	https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE233781	TAIR10	mixed with various NGS				Roza	
 6 TFs	ChIP-seq	https://pmc.ncbi.nlm.nih.gov/articles/PMC11144201/	https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE263488	https://urgi.versailles.inra.fr/Species/Forest-trees/Populus/Clone-INRA-717-1B4					Roza	
-APO2	ChIP-seq	https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE263431	https://pmc.ncbi.nlm.nih.gov/articles/PMC9342985/#sec30	RAP-DB					Roza	
+APO2	ChIP-seq	https://pmc.ncbi.nlm.nih.gov/articles/PMC9342985/#sec30	https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE263431	RAP-DB					Roza	
 JMJ28	ChIP-seq	not found	https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE168892	TAIR10					Roza	
 TaSPL6	CUT&Tag	https://www.nature.com/articles/s41588-024-01762-2#Sec12	https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE245464	v2.1 reference genome of the bread wheat accession Chinese Spring					Roza	
 PIF4	ChIP-seq	https://pubmed.ncbi.nlm.nih.gov/38308844/	https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE242309	TAIR10					Roza	
