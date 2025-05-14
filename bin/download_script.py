@@ -26,7 +26,13 @@ data_file = "./../data/newPLANTsdata_JASPAR2026.tsv"
 data_tbl = pd.read_csv(data_file,sep='\t')
 
 #%%
-data_tbl.assign(GEO_ID = lambda df_: [f.split("acc")[0] for f in df_.loc[:,'peaks available (GEO link)'].to_list()])
+(data_tbl
+ .assign(GEO_ID = lambda df_: [len(f.split("acc=")) for f in df_.loc[:,'peaks available (GEO link)'].to_list()])
+ .sort_values('GEO_ID')
+)
+
+#%%
+
 #%%
 GSE_id = "GSE104038"
 url = "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE104nnn/GSE104038/suppl/"
