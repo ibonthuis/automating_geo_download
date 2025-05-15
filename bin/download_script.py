@@ -47,8 +47,6 @@ data_tbl = data_tbl.assign(PMID = lambda df_: df_.apply(produce_PMID,axis=1))
 #%%
 person_data_tbl = data_tbl.query("`Assigned person` == 'Vipin'")
 #%%
-range(person_data_tbl.shape[0])
-#%%
 
 for idx in range(person_data_tbl.shape[0]):
 
