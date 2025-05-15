@@ -26,6 +26,8 @@ def extract_tar_content_with_pattern(tar_file,pattern,out_folder):
                     tar.extract(member, path=out_folder)
 
     return file_list
+#%%
+extract_tar_filenames(example_tar_file)
 
 # %%
 extract_tar_content_with_pattern(example_tar_file,'GSM4693877',test_out_folder)
