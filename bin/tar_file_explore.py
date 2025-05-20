@@ -48,7 +48,7 @@ def produce_PMID(x):
          return x['GEO_ID']
 #%%
 data_tbl = data_tbl.assign(PMID = lambda df_: df_.apply(produce_PMID,axis=1))
-person_data_tbl = data_tbl.query("`Assigned person` == 'Vipin'")
+person_data_tbl = data_tbl.query("`Assigned person` == 'Ine'")
 
 #%%
 def produce_biotin_path(x):
@@ -93,7 +93,6 @@ r = re.compile(".*[Pp]eak.*|.*bed\\..*")
  .loc[:,['TF','PMID','GEO_ID','data_path','folder_content','peak_files']]
  .assign(npeakfile = lambda df_: [len(f)for f in df_.peak_files],
          nfile = lambda df_: [len(f)for f in df_.folder_content])
-#  .peak_files.to_list()
 )
 
 # %%
