@@ -6,8 +6,8 @@ import re
 
 #%%
 #path to tar file of interest and folder for extracted files
-example_tar_file = "/home/vipink/Documents/JASPAR/data/GSE155028_RAW.tar"
-test_out_folder = "/home/vipink/Documents/JASPAR/data/"
+example_tar_file = "/storage/kuijjerarea/ine/jaspar_geo_downloads_plants/data/insilicoplants/GSE193400/GSE193400_RAW.tar"
+test_out_folder = "/div/pythagoras/u1/inebont/jaspar_data_collection/data/insilicoplants/GSE193400"
 #%%
 def extract_tar_filenames(example_tar_file):
     file_list = []
@@ -30,5 +30,5 @@ def extract_tar_content_with_pattern(tar_file,pattern,out_folder):
 extract_tar_filenames(example_tar_file)
 
 # %%
-extract_tar_content_with_pattern(example_tar_file,'GSM4693877',test_out_folder)
+extract_tar_content_with_pattern(example_tar_file,'.narrowPeak.gz',test_out_folder)
 # %%

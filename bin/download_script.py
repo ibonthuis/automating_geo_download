@@ -22,7 +22,7 @@ def download_file(url, local_folder):
     print(f"Downloaded: {filename}")
 
 #%%
-data_file = "./../data/newPLANTsdata_JASPAR2026.tsv"
+data_file = "/storage/kuijjerarea/ine/jaspar_geo_downloads_plants/automating_geo_download/data/newPLANTsdata_JASPAR2026.tsv"
 data_tbl = pd.read_csv(data_file,sep='\t')
 
 #%%
@@ -42,27 +42,28 @@ def produce_PMID(x):
     else:
          return x['GEO_ID']
 #%%
-data_tbl = data_tbl.assign(PMID = lambda df_: df_.apply(produce_PMID,axis=1))
+person_data_tbl = data_tbl.assign(PMID = lambda df_: df_.apply(produce_PMID,axis=1))
 
 #%%
-person_data_tbl = data_tbl.query("`Assigned person` == 'Vipin'")
+#person_data_tbl = data_tbl.query("`Assigned person` == 'Vipin'")
 #%%
+idx = 23
 
-for idx in range(person_data_tbl.shape[0]):
+#for idx in range(person_data_tbl.shape[0]):
 
-    tmp_row = person_data_tbl.iloc[idx,:]
-    tmp_url = tmp_row.url
-    tmp_geo_ID = tmp_row.GEO_ID
-    tmp_PMID = tmp_row.PMID
-    local_folder = f"./data/{tmp_PMID}/{tmp_geo_ID}"
+tmp_row = person_data_tbl.iloc[idx,:]
+tmp_url = tmp_row.url
+tmp_geo_ID = tmp_row.GEO_ID
+tmp_PMID = tmp_row.PMID
+local_folder = f"./data/{tmp_PMID}/{tmp_geo_ID}"
 
-    response = requests.get(tmp_url)
+response = requests.get(tmp_url)
 
-    soup = BeautifulSoup(response.text, 'html.parser')
+soup = BeautifulSoup(response.text, 'html.parser')
 
-    print(f"Downloading files for{tmp_geo_ID}")
-    for link in  soup.find_all('a'):
-        tmp_file = link.get('href')
-        if  tmp_geo_ID in tmp_file and "/" not in tmp_file:
-            download_file(tmp_url+tmp_file, local_folder)
-            print((tmp_url+tmp_file).split('/')[-1])
+print(f"Downloading files for{tmp_geo_ID}")
+for link in  soup.find_all('a'):
+    tmp_file = link.get('href')
+    if  tmp_geo_ID in tmp_file and "/" not in tmp_file:
+        download_file(tmp_url+tmp_file, local_folder)
+        print((tmp_url+tmp_file).split('/')[-1])
