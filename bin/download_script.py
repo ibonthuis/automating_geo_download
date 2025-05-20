@@ -1,3 +1,4 @@
+
 #%%
 import pandas as pd
 import requests
@@ -37,13 +38,15 @@ data_tbl = data_tbl.assign(url = lambda df_: ["https://ftp.ncbi.nlm.nih.gov/geo/
 #%% 
 def produce_PMID(x):
     tmp_str = x['paper link'].split("/")
-    if len(tmp_str) >1:
+    if len(tmp_str) >1 and 'pubmed' in tmp_str[2]:
          return tmp_str[3]
     else:
          return x['GEO_ID']
 #%%
 data_tbl = data_tbl.assign(PMID = lambda df_: df_.apply(produce_PMID,axis=1))
 
+#%%
+data_tbl
 #%%
 person_data_tbl = data_tbl.query("`Assigned person` == 'Vipin'")
 #%%
@@ -54,7 +57,10 @@ for idx in range(person_data_tbl.shape[0]):
     tmp_url = tmp_row.url
     tmp_geo_ID = tmp_row.GEO_ID
     tmp_PMID = tmp_row.PMID
-    local_folder = f"./data/{tmp_PMID}/{tmp_geo_ID}"
+    if tmp_geo_ID == tmp_PMID:
+        local_folder = f"/storage/mathelierarea/raw/JASPAR2026_data_for_curation/{tmp_geo_ID}"
+    if tmp_geo_ID != tmp_PMID:
+        local_folder = f"/storage/mathelierarea/raw/JASPAR2026_data_for_curation/{tmp_PMID}/{tmp_geo_ID}"
 
     response = requests.get(tmp_url)
 
@@ -66,3 +72,4 @@ for idx in range(person_data_tbl.shape[0]):
         if  tmp_geo_ID in tmp_file and "/" not in tmp_file:
             download_file(tmp_url+tmp_file, local_folder)
             print((tmp_url+tmp_file).split('/')[-1])
+
