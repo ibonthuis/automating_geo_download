@@ -1,3 +1,4 @@
+
 #%%
 import pandas as pd
 import requests
@@ -37,7 +38,7 @@ data_tbl = data_tbl.assign(url = lambda df_: ["https://ftp.ncbi.nlm.nih.gov/geo/
 #%% 
 def produce_PMID(x):
     tmp_str = x['paper link'].split("/")
-    if len(tmp_str) >1:
+    if len(tmp_str) >1 and 'pubmed' in tmp_str[2]:
          return tmp_str[3]
     else:
          return x['GEO_ID']
