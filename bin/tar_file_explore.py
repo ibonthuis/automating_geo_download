@@ -5,6 +5,8 @@ import tarfile
 import re
 
 #%%
+
+data_file = "/storage/kuijjerarea/ine/jaspar_geo_downloads_plants/automating_geo_download/data/newPLANTsdata_JASPAR2026.tsv"
 #path to tar file of interest and folder for extracted files
 example_tar_file = "/storage/kuijjerarea/ine/jaspar_geo_downloads_plants/data/insilicoplants/GSE193400/GSE193400_RAW.tar"
 test_out_folder = "/div/pythagoras/u1/inebont/jaspar_data_collection/data/insilicoplants/GSE193400"
