@@ -78,12 +78,12 @@ person_data_tbl = person_data_tbl.assign(folder_content = lambda df_: [ list_con
 r = re.compile(".*[Pp]eak.*|.*bed\\..*")
 
 (person_data_tbl
+ .query("PMID == '39179701'")
  .assign(peak_files = lambda df_: [list(filter(r.match, i)) for i in df_.folder_content.to_list()])
  .loc[:,['TF','Genome assembly','data type','PMID','GEO_ID','data_path','folder_content','peak_files']]
  .assign(npeakfile = lambda df_: [len(f)for f in df_.peak_files],
          nfile = lambda df_: [len(f)for f in df_.folder_content])
- .query("npeakfile > 0")
- .assign(files_in_folder = lambda df_: [list(filter(r.match,os.listdir(f))) for f in df_.data_path.to_list()])
+ .assign(files_in_folder = lambda df_: [len(list(filter(r.match,os.listdir(f)))) for f in df_.data_path.to_list()])
 
 
 )
@@ -93,9 +93,9 @@ r = re.compile(".*[Pp]eak.*|.*bed\\..*")
 tmp_file = "./../data/tmp_file.txt"
 delimiters = r"[_\.]+"
 
-(pd.DataFrame({'file':os.listdir("/storage/mathelierarea/raw/JASPAR2026_data_for_curation/38962989/GSE262337")})
+(pd.DataFrame({'file':os.listdir("/storage/mathelierarea/raw/JASPAR2026_data_for_curation/39179701/GSE243806")})
  .assign(TF = lambda df_: [re.split(delimiters,f)[1] for f in df_.file.to_list()])
-  .TF.to_csv(tmp_file,index=False)
+#   .TF.to_csv(tmp_file,index=False)
 )
 # %%
 os.getcwd()
@@ -107,13 +107,12 @@ instead we need to go back in the GEO website and fish out the table in the HTML
 - https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE201700
 - https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE229946
 and fetch the table with all the constitutive GSM links and annotations (saved as )
-
-
 '''
 #%%
 html_tbl_dict = {
     "GSE201700":"./../data/GSE201700_GEO.html",
-    "GSE229946":"./../data/GSE229946_GEO.html"
+    "GSE229946":"./../data/GSE229946_GEO.html",
+    "GSE243806":"./../data/GSE243806.html"
 }
 #%%
 def get_HTML_tbl_content(HTML_file):
@@ -143,4 +142,38 @@ tmp_GEO_tbl = get_HTML_tbl_content(html_tbl_dict[tmp_GEO])
   .merge(person_data_tbl .loc[:,['Genome assembly','data type','PMID','GEO_ID','data_path']],on=['GEO_ID'])
   .assign(peak_file = lambda df_: df_.data_path.astype(str) + df_.file.astype(str))
 ).TF.to_csv(tmp_file,index=False)
+# %%
+'''
+Special case for PMID:39179701: 
+The file name don't indicate the actual TF probed in the experiment, 
+instead we need to go back in the GEO website and fish out the table in the HTML file: 
+- https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE243806
+and fetch the table with all the constitutive GSM links and annotations (saved as )
+'''
+tmp_GEO = "GSE243806"
+tmp_file = "./../data/tmp_file.txt"
+
+tmp_GEO_tbl = get_HTML_tbl_content(html_tbl_dict[tmp_GEO]).rename(columns={0:'GSM',1:'expt'})
+tmp_GEO_tbl.file.to_csv(tmp_file,index=False)
+
+# %%
+# Set of experiments in GSE243806 probing TFs
+GSE243806_TF_results_list = [
+'Arabidopsis_CAMTA3-FLAG_aChIP-seq_rep1',
+'Arabidopsis_CAMTA3-FLAG_aChIP-seq_rep2',
+'Arabidopsis_CAMTA3-FLAG_eChIP-seq_rep1',
+'Arabidopsis_CAMTA3-FLAG_eChIP-seq_rep2',
+'Arabidopsis_MBD7-MYC_aChIP-seq_rep1',
+'Arabidopsis_MBD7-MYC_aChIP-seq_rep2'
+]
+(
+pd.DataFrame({'file':os.listdir(f"/storage/mathelierarea/raw/JASPAR2026_data_for_curation/39179701/{tmp_GEO}")})
+  .assign(GSM = lambda df_: [re.split(delimiters,f)[0] for f in df_.file.to_list()])
+  .merge(tmp_GEO_tbl,on='GSM')
+  .query("expt in @GSE243806_TF_results_list")
+  .dropna().assign(GEO_ID = tmp_GEO)
+  .merge(person_data_tbl .loc[:,['Genome assembly','data type','PMID','GEO_ID','data_path']],on=['GEO_ID'])
+  .assign(peak_file = lambda df_: df_.data_path.astype(str) + df_.file.astype(str))
+).expt.to_csv(tmp_file,index=False)
+
 # %%
